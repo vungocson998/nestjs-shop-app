@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: ./admin-api
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME}
+    ports:
+      - "${APP_EXPOSE_PORT}:${APP_PORT}"
+    volumes:
+      - ./admin-api:/usr/src/app
+    depends_on:
+      - db-mysql
+    links:
+      - db-mysql
+
+  db-mysql:
+    image: mysql:5.7
+    container_name: ${DB_USER_NAME}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASS}
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - ${MYSQL_USER_EXPOSE_PORT}:${MYSQL_PORT}
+volumes:
+  mysql-data:

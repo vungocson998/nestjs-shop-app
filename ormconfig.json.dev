@@ -1,0 +1,11 @@
+{
+    "type": "mysql",
+    "host": "quang_shop",
+    "port": 3306,
+    "username": "root",
+    "password": "quang@123",
+    "database": "quang_shop",
+    "entities": ["src/**/*.entity{.ts,.js}"],
+    "synchronize": true,
+    "logging": "all"
+  }

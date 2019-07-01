@@ -1,0 +1,22 @@
+FROM node:10.15
+
+RUN mkdir -p /usr/src/app
+
+# WORKDIR /usr/src/app
+
+# COPY package.json package.json
+COPY . .
+
+RUN node --version
+RUN npm --version
+
+RUN npm install
+
+EXPOSE 3000
+
+COPY start.sh /start.sh
+
+RUN chmod +x /start.sh
+
+CMD bash ./start.sh
+# CMD ["npm","start"]
