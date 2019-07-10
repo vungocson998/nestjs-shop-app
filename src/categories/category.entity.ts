@@ -8,10 +8,10 @@ export class Category {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    
     name: string;
 
-    @Column({ type: 'varchar', unique: true })
+    @Column({ type: 'varchar', unique: true, length:190 })
     slug: string;
 
     @TreeChildren()
@@ -37,7 +37,5 @@ export class Category {
 
     @UpdateDateColumn()
     updatedAt: Date;
-
-
 
 }

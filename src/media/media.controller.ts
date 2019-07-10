@@ -54,19 +54,22 @@ export class MediaController {
         fileFilter: function (req, file, cb) {
             const mimeTypeList = ['image/png', 'image/jpeg', 'video/mp4'];
 
-            return mimeTypeList.some(item => item === file.mimetype)
+             return mimeTypeList.some(item => item === file.mimetype)
                 ? cb(null, true)
                 : cb(null, false);
         },
     }))
     @ApiConsumes('multipart/form-data')
-    @ApiImplicitFile({ name: 'medias[0]', required: true, description: 'Firt file' })
-    async create(@Request() req: Request, @UploadedFiles() files) {
+    @ApiImplicitFile({ name: 'medias', required: true, description: 'Firt file' })
+    async create(@Request() req: Request, @UploadedFiles() file) {
+        console.log("1")
         let user = req['user'];
-        console.log('medias', files.medias);
-        return await this.service.create(user, files.medias);
+        console.log(user)
+        console.log(file)
+        console.log('medias', file.medias);
+        return await this.service.create(user, file.medias);
     }
-
+ 
     @Get(':id')
     @ApiCreatedResponse({ description: 'Find admin by ID' })
     async get(@Res() res, @Param() request: DetailRequest) {

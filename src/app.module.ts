@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { Connection } from 'typeorm';
 import { CategoriesModule } from './categories/categories.module';
 import { MediaModule } from './media/media.module';
+import { SlideModule } from './slide/slide.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
@@ -14,6 +15,7 @@ import { MediaModule } from './media/media.module';
     AuthModule,
     CategoriesModule,
     MediaModule,
+    SlideModule,
   ],
   controllers: [AppController],
   providers: [AppService],

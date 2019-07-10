@@ -23,7 +23,6 @@ export class MediaService {
                 updatedBy: currentUser.id
             };
         });
-
         try {
             await getConnection()
                 .createQueryBuilder()
