@@ -37,7 +37,7 @@ export class CategoriesService {
             let parent = await this.findCate({ id: params.parentId });
 
             cate.parent = parent || cate.parent;
-            cate.name = params.name || cate.name;
+            cate.slug = params.name || cate.slug;
             cate.description = params.description || cate.description,
                 cate.slug = params.slug || cate.slug;
 

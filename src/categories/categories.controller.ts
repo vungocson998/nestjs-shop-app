@@ -22,10 +22,9 @@ export class CategoriesController {
         let user = req['user'];
         let exists = await this.service.findCate(params);
         if (!exists) return await this.service.createCate(user, params);
-
         throw new HttpException({
             status: HttpStatus.UNPROCESSABLE_ENTITY,
-            message: 'This email existed'
+            message: 'This category slug existed!'
         }, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
@@ -33,7 +32,6 @@ export class CategoriesController {
     @HttpCode(200)
     async trees(@Response() res) {
         let items = await this.service.findTrees();
-
         return res.json({ data: { items: items } });
     }
 

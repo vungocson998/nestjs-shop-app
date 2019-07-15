@@ -62,10 +62,7 @@ export class MediaController {
     @ApiConsumes('multipart/form-data')
     @ApiImplicitFile({ name: 'medias', required: true, description: 'Firt file' })
     async create(@Request() req: Request, @UploadedFiles() file) {
-        console.log("1")
         let user = req['user'];
-        console.log(user)
-        console.log(file)
         console.log('medias', file.medias);
         return await this.service.create(user, file.medias);
     }

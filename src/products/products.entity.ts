@@ -1,20 +1,22 @@
 import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 import {Category} from "../categories/category.entity"
-import { Media } from "../media/media.entity"
 @Entity({
-    name: "slide",
+    name: "porducts",
     synchronize: true
 })
-export class Slide extends BaseEntity {
+export class Products extends BaseEntity {
 
     @PrimaryGeneratedColumn({ unsigned: true, type: 'int' })
     id: number;
 
-    @Column({ length: 200, nullable: true })
-    heading: string;
+    @Column({ length: 100 })
+    name: string;
 
-    @Column({ nullable: false, length:200 })
-    content: string;
+    @Column({ nullable: false,  type: 'float' })
+    rate: number;
+
+    @Column({ type: 'text' })
+    description: string;
 
     @Column({ default: true, comment: 'true:active, false:disable' })
     isActive: boolean;
@@ -22,7 +24,5 @@ export class Slide extends BaseEntity {
     @ManyToOne(type => Category, category => category.id)
     category: Category
 
-    @ManyToOne(type => Media, media => media.id)
-    media : Media
 }
 

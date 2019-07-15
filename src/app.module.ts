@@ -8,6 +8,12 @@ import { Connection } from 'typeorm';
 import { CategoriesModule } from './categories/categories.module';
 import { MediaModule } from './media/media.module';
 import { SlideModule } from './slide/slide.module';
+import { SupportModule } from './support/support.module';
+import { ProductsModule } from './products/poducts.module';
+import { ProductDetailModule } from './product_detail/poduct_detail.module'
+import { CustomersModule } from './customers/customers.module';
+import { OrdersModule } from './orders/orders.module'
+import { OrderDetailModule } from './order_detail/order_detail.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
@@ -16,6 +22,12 @@ import { SlideModule } from './slide/slide.module';
     CategoriesModule,
     MediaModule,
     SlideModule,
+    SupportModule,
+    ProductsModule,
+    ProductDetailModule,
+    CustomersModule,
+    OrdersModule,
+    OrderDetailModule
   ],
   controllers: [AppController],
   providers: [AppService],
