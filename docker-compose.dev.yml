@@ -3,13 +3,13 @@ version: '2'
 services:
   app:
     build:
-      context: ./admin-api
+      context: .
       dockerfile: Dockerfile
     container_name: ${APP_NAME}
     ports:
-      - "${APP_EXPOSE_PORT}:${APP_PORT}"
+      - ${APP_EXPOSE_PORT}:${APP_PORT}
     volumes:
-      - ./admin-api:/usr/src/app
+      - .:/usr/src/app
     depends_on:
       - db-mysql
     links:

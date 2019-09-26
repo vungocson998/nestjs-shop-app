@@ -3,5 +3,5 @@ cp ormconfig.json.dev ormconfig.json
 
 npm install
 
-npm start:prod
+npm run start
 
