@@ -1,5 +1,6 @@
-import { Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, ManyToOne, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { User } from '../users/user.entity';
+import { Media } from '../media/media.entity'
 
 @Entity()
 @Tree("closure-table")
@@ -25,6 +26,9 @@ export class Category {
 
     @Column({ default: true, comment: 'true:active, false:disable' })
     isActive: boolean;
+
+    @ManyToOne(type =>Media, media => media.id)
+    media: Media
 
     @ManyToOne(type => User, user => user.id)
     createdBy: User

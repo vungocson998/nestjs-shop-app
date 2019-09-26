@@ -14,6 +14,10 @@ export class CreateSlideRequest {
     media: number;
 
     @IsNumber()
+    @ApiModelProperty({ example: 1})
+    group: number;
+
+    @IsNumber()
     @ApiModelProperty()
     category: number;
 

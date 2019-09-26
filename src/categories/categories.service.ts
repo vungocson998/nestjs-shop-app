@@ -21,26 +21,30 @@ export class CategoriesService {
         cate.name = params.name;
         cate.slug = params.name;
         cate.description = params.description;
+        cate.media = params.media;
         cate.createdBy = currentUser;
         cate.updatedBy = currentUser;
 
         return await this.catesRepository.save(cate);
     }
+    
 
-    async findTrees() {
+    async findTrees() : Promise<Category[]> {
+        console.log(Category);
         return await this.catesRepository.findTrees();
     }
-
+    async getCate() {
+        return await this.catesRepository.find({ relations: ["media"] });
+    }
     async updateCate(id, params) {
         try {
             let cate = await this.findCate({ id: id });
             let parent = await this.findCate({ id: params.parentId });
-
             cate.parent = parent || cate.parent;
             cate.slug = params.name || cate.slug;
-            cate.description = params.description || cate.description,
-                cate.slug = params.slug || cate.slug;
-
+            cate.description = params.description || cate.description;
+            cate.media = params.media || cate.media;
+            cate.slug = params.slug || cate.slug;
             return await this.catesRepository.update({ id: id }, cate);
 
         } catch (error) {

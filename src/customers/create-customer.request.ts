@@ -1,6 +1,6 @@
 import { IsEmail, IsString, IsNumber, IsNotEmpty, IsBoolean, Min, Max } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
-export class CreateProductsRequest {
+export class CreateCustomerRequest {
     @IsString()
     @ApiModelProperty({ example: "Hoàng Hải" })
     name: string;

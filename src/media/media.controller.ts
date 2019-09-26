@@ -29,13 +29,13 @@ import { MediaService } from './media.service';
 import { DetailRequest } from './detail-request';
 import { UpdateRequest } from './update-request';
 import * as uuid from 'uuid';
-@ApiBearerAuth()
 @ApiUseTags('Medias')
-@UseGuards(AuthGuard('jwt'))
 @Controller('medias')
 
 export class MediaController {
     constructor(private service: MediaService) { }
+    @ApiBearerAuth()
+    @UseGuards(AuthGuard('jwt'))
     @Post('create')
     @UseInterceptors(FileFieldsInterceptor([{ name: 'medias', maxCount: 10 }], {
         dest: './uploads',
@@ -64,6 +64,7 @@ export class MediaController {
     async create(@Request() req: Request, @UploadedFiles() file) {
         let user = req['user'];
         console.log('medias', file.medias);
+        console.log(user)
         return await this.service.create(user, file.medias);
     }
  

@@ -11,27 +11,30 @@ import { DetailProductDetailActive } from './update-productDetail-isActive.reque
 import { AuthGuard } from '@nestjs/passport';
 @ApiBearerAuth()
 @ApiUseTags('ProductDetail')
-@UseGuards(AuthGuard('jwt'))
 @Controller('ProductDetail')
 export class ProductDetailController {
     constructor(private service: ProductDetailService) { }
+    @UseGuards(AuthGuard('jwt'))
     @Post('add-new')
     @ApiCreatedResponse({ description: 'Find admin by ID' })
     async create(@Body() request: CreateProductDetailRequest) {
-            return await this.service.createProductDetail(request);  
+        return await this.service.createProductDetail(request);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Put(':id')
     @ApiCreatedResponse({ description: 'Find admin by ID' })
     update(@Param('id') id: Number, @Body() params: UpdateProductDetailRequest) {
         return this.service.updateProductDetail(id, params);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Put(':id/isActive')
     @ApiCreatedResponse({ description: 'Find admin by ID' })
     updateActive(@Param('id') id: Number, @Body() params: DetailProductDetailActive) {
         return this.service.updateProductDetailActive(id, params);
     }
+
 
     @Get('/product/:id')
     @ApiCreatedResponse({ description: 'Find admin by ID' })

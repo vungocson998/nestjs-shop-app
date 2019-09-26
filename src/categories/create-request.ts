@@ -10,6 +10,10 @@ export class CreateRequest {
     @ApiModelProperty({ example: 0, required: false })
     parentId: number;
 
+    @IsNumber()
+    @ApiModelProperty({ example: 1 })
+    media: number;
+
     @IsString()
     @IsNotEmpty()
     @MaxLength(500)

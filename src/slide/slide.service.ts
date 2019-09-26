@@ -12,6 +12,7 @@ export class SlideService {
         slide.heading = params.heading;
         slide.content = params.content;
         slide.media = params.media;
+        slide.group = params.group;
         slide.category = params.category;
         slide.isActive = params.isActive;
         return await this.slideRepository.save(slide);
@@ -26,7 +27,8 @@ export class SlideService {
             slide.content = params.content || slide.content;
             slide.isActive = params.isActive || slide.isActive;
             slide.category = params.category || slide.category;
-            slide.media = params.media || slide.media
+            slide.media = params.media || slide.media;
+            slide.group = params.group || slide.group;
             slide.isActive = params.media || slide.isActive
             return await this.slideRepository.update({ id: id }, params);
         } catch (error) {

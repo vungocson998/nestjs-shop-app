@@ -5,6 +5,8 @@ import { Products } from './products.entity'
 
 @Injectable() 
 export class ProductsService {
+
+
     constructor(@InjectRepository(Products) private productsRepository: Repository<Products>) { }
     async createProducts(params: any): Promise<Products> {
         let products = new Products();
@@ -45,12 +47,29 @@ export class ProductsService {
     async getProducts() {
         return await this.productsRepository.find();
     }
-
+    
     async getProductsId(id) {
         return await this.productsRepository.findOne(id);
     }
 
     async getCategoryId(id) {
         return await this.productsRepository.find({ relations: ["category"], where: { category: { id: id } } });
+    }
+    async findProductInCateID(params) {
+        const take = params.limit;
+        const skip = params.offset;   
+        const id = params.id;
+        const [result, total] = await this.productsRepository.findAndCount(
+            {
+                where: { category: { id: id }},
+                take: take,
+                skip: skip
+            }
+        );
+    
+        return {
+            data: result,
+            count: total
+        }
     }
 }

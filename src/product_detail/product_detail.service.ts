@@ -53,6 +53,9 @@ export class ProductDetailService {
     async getProductDetailId(id) {
         return await this.productDetailRepository.createQueryBuilder("product_detail")
         .leftJoinAndSelect("product_detail.media","media")
-        .where("product_detail.id = :id", { id: id }).getOne();    }
-
+        .leftJoinAndSelect("product_detail.products","products")
+        .where("products.id = :id", { id: id }).getMany();    }
+        // async getProductDetailId() {
+        //     return await this.productDetailRepository.find({relations: ["media","products"]})
+        // }
 }

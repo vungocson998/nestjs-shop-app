@@ -13,7 +13,7 @@ import { UpdateRequest } from './update-request';
 
 @ApiBearerAuth()
 @ApiUseTags('Categories')
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 @Controller('categories')
 export class CategoriesController {
     constructor(private service: CategoriesService) { }
@@ -32,7 +32,14 @@ export class CategoriesController {
     @HttpCode(200)
     async trees(@Response() res) {
         let items = await this.service.findTrees();
+        console.log(items)
         return res.json({ data: { items: items } });
+    }
+
+    @Get('/filter')
+    async getSlide(@Response() res) {
+        let items = await  this.service.getCate();
+        return res.json({ data: items});
     }
 
     @Get(':id')
@@ -42,7 +49,7 @@ export class CategoriesController {
     }
 
     @Put(':id')
-    update(@Param('id') id: Number, @Body() params: UpdateRequest) {
+    update(@Param('id') id: Number, @Body() params: CreateRequest) {
         return this.service.updateCate(id, params);
     }
 }

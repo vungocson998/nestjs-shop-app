@@ -9,9 +9,7 @@ import { CreateSlideRequest } from './create-slide.request'
 import { UpdateSlideRequest } from './detail-slide.request'
 import { DetailSlideActive } from './detail-slide-isActive.request'
 import { AuthGuard } from '@nestjs/passport';
-@ApiBearerAuth()
 @ApiUseTags('Slide')
-@UseGuards(AuthGuard('jwt'))
 @Controller('slide')
 export class SlideController {
     constructor(private service: SlideService) { }

@@ -16,6 +16,9 @@ export class Slide extends BaseEntity {
     @Column({ nullable: false, length:200 })
     content: string;
 
+    @Column({type: 'int'})
+    group: number;
+
     @Column({ default: true, comment: 'true:active, false:disable' })
     isActive: boolean;
 

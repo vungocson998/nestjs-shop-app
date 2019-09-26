@@ -14,6 +14,10 @@ export class UpdateSlideRequest {
     @ApiModelProperty({ example: 1 })
     media: number;
 
+    @IsNumber()
+    @ApiModelProperty({ example: 1})
+    group: number;
+
     @IsNotEmpty()
     @IsNumber()
     @ApiModelProperty({ example: 1 })
